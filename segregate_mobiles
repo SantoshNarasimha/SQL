@@ -1,0 +1,4 @@
+-- write a query to segregate all the expensive mobiles, mid range, amd cheaper mobiles
+
+
+select *, case when bucket = 1 then "higher_price" when bucket = 2 then "mid range" when bucket = 3 then "lower_range" end as categorizing from (select *, ntile(3) over(order by price desc) as bucket from sales) as okk
